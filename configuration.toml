@@ -1,0 +1,18 @@
+wall_thickness = 20
+
+#knob_diameter =75
+knob_diameter =65
+#wheel_diameter = 35.3
+wheel_diameter = 30
+
+knob_bushing_diameter = 25 
+knob_bushing_sphere_diameter = 30 
+bushing_spacing = 5
+#how far the bushing should be pulled out from the knob 
+bushing_retraction_distance=30
+
+snap_on_distance = 10
+zip_tie_width=10
+zip_tie_height=5
+
+
