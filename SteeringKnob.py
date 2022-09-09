@@ -67,6 +67,7 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
 
     zip_tie_hole_radius = wheel_diameter/2 - wall_thickness/4
     lower_clasp_snap_on_height = sqrt((wheel_diameter/2)**2 - zip_tie_hole_radius**2)
+    #TODO: clasp is moved too far, need to align to outer half of zip tie hole
     #create a cube that is the snap on distance
     snap_on_cube = cube([zip_tie_width,zip_tie_height/2,lower_clasp_snap_on_height],center=True)
     snap_on_cube = translate([0,0,lower_clasp_snap_on_height/2+wheel_diameter/2+wall_thickness/4])(snap_on_cube)
@@ -99,8 +100,10 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
 
 
     #add the snap on to the lower clasp on either side
-    lower_clasp += translate([0,wheel_diameter/2 + wall_thickness/4,snap_on_distance/2])(snap_on_left)
-    lower_clasp += translate([0,-wheel_diameter/2 - wall_thickness/4,snap_on_distance/2])(snap_on_right)
+    lower_clasp += translate([0,wheel_diameter/2 + wall_thickness/4 - zip_tie_height/2,snap_on_distance/2])(snap_on_left)
+        #,snap_on_distance/2])(snap_on_left)
+    #lower_clasp += translate([0,-wheel_diameter/2 - wall_thickness/4,snap_on_distance/2])(snap_on_right)
+    lower_clasp += translate([0,-wheel_diameter/2 - wall_thickness/4 + zip_tie_height/2,snap_on_distance/2])(snap_on_right)
 
     return steering_knob,lower_clasp
 
