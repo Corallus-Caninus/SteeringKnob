@@ -68,16 +68,16 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
     zip_tie_hole_radius = wheel_diameter/2 - wall_thickness/4
     lower_clasp_snap_on_height = sqrt((wheel_diameter/2)**2 - zip_tie_hole_radius**2)
     #create a cube that is the snap on distance
-    snap_on_cube = cube([zip_tie_width/2,zip_tie_height/2,lower_clasp_snap_on_height],center=True)
+    snap_on_cube = cube([zip_tie_width,zip_tie_height/2,lower_clasp_snap_on_height],center=True)
     snap_on_cube = translate([0,0,lower_clasp_snap_on_height/2+wheel_diameter/2+wall_thickness/4])(snap_on_cube)
     #create the snap on hinge which is a traingular-prism
     #create the left
-    snap_on_hinge_left = rotate([-90,-90,90])(linear_extrude(height=zip_tie_width/2)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
-    snap_on_hinge_left = translate([-zip_tie_width/4,zip_tie_height/4,0])(snap_on_hinge_left)
+    snap_on_hinge_left = rotate([-90,-90,90])(linear_extrude(height=zip_tie_width)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
+    snap_on_hinge_left = translate([-zip_tie_width/2,zip_tie_height/4,0])(snap_on_hinge_left)
     #translate so its on top of snap_on_cube
     snap_on_hinge_left = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+zip_tie_width/4])(snap_on_hinge_left)
     #translate it to center 
-    snap_on_hinge_left = translate([zip_tie_width/2,0,0])(snap_on_hinge_left)
+    snap_on_hinge_left = translate([zip_tie_width,0,0])(snap_on_hinge_left)
     #translate it up to snap_on_height
     snap_on_hinge_left = translate([0,0,lower_clasp_snap_on_height])(snap_on_hinge_left)
     snap_on_left = snap_on_cube + snap_on_hinge_left
@@ -85,12 +85,12 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
     snap_on_left = translate([0,zip_tie_height/2,0])(snap_on_left)
 
     #create the right
-    snap_on_hinge_right = rotate([-90,-90,-90])(linear_extrude(height=zip_tie_width/2)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
-    snap_on_hinge_right = translate([zip_tie_width/4,-zip_tie_height/4,0])(snap_on_hinge_right)
+    snap_on_hinge_right = rotate([-90,-90,-90])(linear_extrude(height=zip_tie_width)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
+    snap_on_hinge_right = translate([zip_tie_width/2,-zip_tie_height/4,0])(snap_on_hinge_right)
     #translate so its on top of snap_on_cube
     snap_on_hinge_right = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+zip_tie_width/4])(snap_on_hinge_right)
     #translate it to center
-    snap_on_hinge_right = translate([-zip_tie_width/2,0,0])(snap_on_hinge_right)
+    snap_on_hinge_right = translate([-zip_tie_width,0,0])(snap_on_hinge_right)
     #translate it up to snap_on_height
     snap_on_hinge_right = translate([0,0,lower_clasp_snap_on_height])(snap_on_hinge_right)
     snap_on_right = snap_on_cube + snap_on_hinge_right
