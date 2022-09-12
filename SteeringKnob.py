@@ -69,14 +69,14 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
     lower_clasp_snap_on_height = sqrt((wheel_diameter/2)**2 - zip_tie_hole_radius**2)
     #TODO: clasp is moved too far, need to align to outer half of zip tie hole
     #create a cube that is the snap on distance
-    snap_on_cube = cube([zip_tie_width,zip_tie_height/2,lower_clasp_snap_on_height],center=True)
-    snap_on_cube = translate([0,0,lower_clasp_snap_on_height/2+wheel_diameter/2+wall_thickness/4])(snap_on_cube)
+    snap_on_cube = cube([zip_tie_width,zip_tie_height/2,lower_clasp_snap_on_height+zip_tie_width/2],center=True)
+    snap_on_cube = translate([0,0,lower_clasp_snap_on_height/2+wheel_diameter/2+wall_thickness/4+zip_tie_width/4])(snap_on_cube)
     #create the snap on hinge which is a traingular-prism
     #create the left
     snap_on_hinge_left = rotate([-90,-90,90])(linear_extrude(height=zip_tie_width)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
     snap_on_hinge_left = translate([-zip_tie_width/2,zip_tie_height/4,0])(snap_on_hinge_left)
     #translate so its on top of snap_on_cube
-    snap_on_hinge_left = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+zip_tie_width/4])(snap_on_hinge_left)
+    snap_on_hinge_left = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+3/4*zip_tie_width])(snap_on_hinge_left)
     #translate it to center 
     snap_on_hinge_left = translate([zip_tie_width,0,0])(snap_on_hinge_left)
     #translate it up to snap_on_height
@@ -89,7 +89,7 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
     snap_on_hinge_right = rotate([-90,-90,-90])(linear_extrude(height=zip_tie_width)(polygon(points=[[0,0],[zip_tie_width/2,0],[0,zip_tie_height/2]])))
     snap_on_hinge_right = translate([zip_tie_width/2,-zip_tie_height/4,0])(snap_on_hinge_right)
     #translate so its on top of snap_on_cube
-    snap_on_hinge_right = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+zip_tie_width/4])(snap_on_hinge_right)
+    snap_on_hinge_right = translate([0,0,lower_clasp_snap_on_height+zip_tie_height/4+3/4*zip_tie_width])(snap_on_hinge_right)
     #translate it to center
     snap_on_hinge_right = translate([-zip_tie_width,0,0])(snap_on_hinge_right)
     #translate it up to snap_on_height
@@ -104,6 +104,8 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
         #,snap_on_distance/2])(snap_on_left)
     #lower_clasp += translate([0,-wheel_diameter/2 - wall_thickness/4,snap_on_distance/2])(snap_on_right)
     lower_clasp += translate([0,-wheel_diameter/2 - wall_thickness/4 + zip_tie_height/2,snap_on_distance/2])(snap_on_right)
+    #rotate lower clasp by 90 degrees so it is on the xy plane for the hinge to slice the flex part along layer lines
+    lower_clasp = rotate([0,90,0])(lower_clasp)
 
     return steering_knob,lower_clasp
 
