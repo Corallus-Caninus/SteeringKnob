@@ -6,7 +6,8 @@ knob_diameter =65
 wheel_diameter = 30
 
 knob_bushing_diameter = 25 
-knob_bushing_sphere_diameter = 30 
+#knob_bushing_sphere_diameter = 30 #prev
+knob_bushing_sphere_diameter =  40
 bushing_spacing = 5
 #how far the bushing should be pulled out from the knob 
 bushing_retraction_distance=30
