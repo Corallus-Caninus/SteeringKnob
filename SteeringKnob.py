@@ -40,6 +40,13 @@ def SteeringKnob(wall_thickness,wheel_diameter,knob_diameter,knob_bushing_diamet
     #create a clasp that is a cylinder with a hole in it of diameter 
     clasp = cylinder(d=wheel_diameter+wall_thickness,h=knob_bushing_diameter/2+wall_thickness,center=True)
     clasp -= cylinder(d=wheel_diameter,h=knob_bushing_diameter/2+wall_thickness,center=True)
+
+#TODO: add reinforcing cylinders on either side
+    reinforcment = cylinder(d=wall_thickness/2,h=knob_bushing_diameter/2+wall_thickness,center=True)
+    left_reinforcment = translate([wheel_diameter/2 + wall_thickness/2 , wall_thickness/4, 0])(reinforcment)
+    right_reinforcment = translate([-(wheel_diameter/2 + wall_thickness/2 ), wall_thickness/4, 0])(reinforcment)
+    clasp = clasp + left_reinforcment + right_reinforcment
+
     clasp = rotate([90,0,90])(clasp)
 
     #remove the lower half of the clasp to create a semi-circular clasp
