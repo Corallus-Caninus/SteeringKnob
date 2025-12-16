@@ -1,0 +1,4 @@
+dec=RA /def/
+SK=RR RA /def SteeringKnob/ RA /def /
+cb=RR RA /def/create_bushing/ RA /def /
+clasp=RR RA /create a clasp that is a cylinder with a hole in it of diameter/#/ RA /remove the lower half of the clasp to create a semi/#/
